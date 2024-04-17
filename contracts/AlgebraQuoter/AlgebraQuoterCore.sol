@@ -14,7 +14,7 @@ contract AlgebraQuoterCore is UniV3likeQuoterCore {
     function getTickSpacing(
         address pool
     ) internal override view returns (int24) {
-        return IAlgebraPool(pool).tickSpacing();
+        return 1;
     }
     
     function getLiquidity(address pool) internal override view returns (uint128) {
