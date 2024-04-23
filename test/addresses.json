@@ -72,7 +72,14 @@
                 "factory": "0xC7a590291e07B9fe9E64b86c58fD8fC764308C4A"
             }
         }
-    }, 
+    },
+    "xai": {
+        "protocols": {
+            "camelot": {
+                "factory": "0xD8676fBdfa5b56BB2298D452c9768f51e80e34AE"
+            }
+        }
+    },
     "optimism": {
         "protocols": {
             "kyber": {

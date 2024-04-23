@@ -20,6 +20,7 @@ function getExplorerApiKey() {
 }
 
 const ARBITRUM_RPC = process.env.ARBITRUM_RPC ?? "";
+const XAI_RPC = process.env.XAI_RPC ?? "";
 const DEPLOYER_ADDRESS = process.env.DEPLOYER_ADDRESS as string;
 const DEPLOYER_PRIVATE_KEY = process.env.DEPLOYER_PRIVATE_KEY as string;
 const ETHERSCAN_API_KEY = getExplorerApiKey();
@@ -32,8 +33,17 @@ const arbitrumConfig = {
     accounts: [] as string[]
 };
 
+const xaiConfig = {
+    url: XAI_RPC,
+    chainId: 660279,
+    live: true,
+    saveDeployments: true,
+    accounts: [] as string[]
+};
+
 if (DEPLOYER_PRIVATE_KEY) {
     arbitrumConfig.accounts.push(DEPLOYER_PRIVATE_KEY);
+    xaiConfig.accounts.push(DEPLOYER_PRIVATE_KEY);
 }
 
 const config: HardhatUserConfig = {
@@ -57,6 +67,7 @@ const config: HardhatUserConfig = {
             saveDeployments: false,
         },
         arbitrum: arbitrumConfig,
+        xai: xaiConfig,
     },
     namedAccounts: {
         deployer: {
@@ -78,6 +89,14 @@ const config: HardhatUserConfig = {
             urls: {
                 apiURL: "https://api.arbiscan.io/api",
                 browserURL: "https://arbiscan.io"
+            }
+        },
+        {
+            network: "xai",
+            chainId: 660279,
+            urls: {
+                apiURL: "https://explorer.xai-chain.net/api",
+                browserURL: "https://explorer.xai-chain.net/"
             }
         }]
     },

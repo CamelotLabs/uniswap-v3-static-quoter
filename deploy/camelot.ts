@@ -7,7 +7,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     const { deployments, getNamedAccounts, network } = hre;
     const { deploy, log } = deployments;
 
-    const allowedNetworks = ["arbitrum"];
+    const allowedNetworks = ["arbitrum", "xai"];
     if (!allowedNetworks.includes(network.name))
         throw new Error(`Wrong network! Only "${allowedNetworks}" supported`);
     const networkAddresses: any = Object.entries(addresses).find(([key, _]) => key == network.name)?.[1];
