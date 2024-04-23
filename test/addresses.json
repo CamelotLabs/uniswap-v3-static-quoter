@@ -73,6 +73,13 @@
             }
         }
     },
+    "sanko": {
+        "protocols": {
+            "camelot": {
+                "factory": "0xcF8d0723e69c6215523253a190eB9Bc3f68E0FFa"
+            }
+        }
+    },
     "xai": {
         "protocols": {
             "camelot": {

@@ -20,6 +20,7 @@ function getExplorerApiKey() {
 }
 
 const ARBITRUM_RPC = process.env.ARBITRUM_RPC ?? "";
+const SANKO_RPC = process.env.SANKO_RPC ?? "";
 const XAI_RPC = process.env.XAI_RPC ?? "";
 const DEPLOYER_ADDRESS = process.env.DEPLOYER_ADDRESS as string;
 const DEPLOYER_PRIVATE_KEY = process.env.DEPLOYER_PRIVATE_KEY as string;
@@ -28,6 +29,14 @@ const ETHERSCAN_API_KEY = getExplorerApiKey();
 const arbitrumConfig = {
     url: ARBITRUM_RPC,
     chainId: 42161,
+    live: true,
+    saveDeployments: true,
+    accounts: [] as string[]
+};
+
+const sankoConfig = {
+    url: SANKO_RPC,
+    chainId: 1996,
     live: true,
     saveDeployments: true,
     accounts: [] as string[]
@@ -43,6 +52,7 @@ const xaiConfig = {
 
 if (DEPLOYER_PRIVATE_KEY) {
     arbitrumConfig.accounts.push(DEPLOYER_PRIVATE_KEY);
+    sankoConfig.accounts.push(DEPLOYER_PRIVATE_KEY);
     xaiConfig.accounts.push(DEPLOYER_PRIVATE_KEY);
 }
 
@@ -67,6 +77,7 @@ const config: HardhatUserConfig = {
             saveDeployments: false,
         },
         arbitrum: arbitrumConfig,
+        sanko: sankoConfig,
         xai: xaiConfig,
     },
     namedAccounts: {
@@ -89,6 +100,14 @@ const config: HardhatUserConfig = {
             urls: {
                 apiURL: "https://api.arbiscan.io/api",
                 browserURL: "https://arbiscan.io"
+            }
+        },
+        {
+            network: "sanko",
+            chainId: 1996,
+            urls: {
+                apiURL: "https://sanko-mainnet.calderaexplorer.xyz/api",
+                browserURL: "https://sanko-mainnet.calderaexplorer.xyz/"
             }
         },
         {
